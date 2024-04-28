@@ -10,8 +10,6 @@
   date: datetime.today(),
 )
 
-#let deriv(num, dnm) = [$ (d num) / (d dnm) $]
-
 = 信息准则的几个谣传
 AIC和BIC的原始形式如下:
 $ text("AIC")_m=-2 sum_(i=1)^n log(p_(hat(theta))(y_i)) + 2d_m $
@@ -23,20 +21,21 @@ BIC选择生成数据模型的一致性也不是良好定义的。
 
 == 应该使用AIC, 因为现实情况更常见到非参数化的情形 ?
 在实际情况中信息准则也会受到样本数的影响，例如：
-#set enum(indent: 4em)
-+ 在样本少非参数的情况下， BIC可以察觉到突出的模型
-+ 在参数化的情况下，系数在不同的数量级上很小，并且样本数不足以 估计它们，在这种情况下选择模型使用AIC更加适合
-+ 主要有部分参数化、部分非参数化的两种情况
-
+#enum(
+  indent: 4em,
+  [在样本少非参数的情况下， BIC可以察觉到突出的模型 ],
+  [在参数化的情况下，系数在不同的数量级上很小，并且样本数不足以 估计它们，在这种情况下选择模型使用AIC更加适合],
+  [主要有部分参数化、部分非参数化的两种情况],
+)
 == penlity $l_0$ 不如 penlity (LASSO, SCAD, MCP), 因为它是离散的 ?
 信息准则相当于带有$l_0$ penlity的回归， penlity 是否正确取决于计算的目的
 #list(
   indent: 4em,
-)[即使是对于固定调整参数(fixed tuning parameter)，选择模型的能力与penlity function 的连续与否没有直接关系 ]
-#list(
-  indent: 4em,
-)[固定调整参数(fixed tuning parameter)的选择基于数据，其他penlity 不一定会给出更好结果]
-#list(indent: 4em)[事实上$l_0$ penlity 方式以最少的约束条件得到了minimax rate最佳值 ]
+  [即使是对于固定调整参数(fixed tuning parameter)，选择模型的能力与penlity function 的连续与否没有直接关系],
+  [固定调整参数(fixed tuning parameter)的选择基于数据，其他penlity 不一定会给出更好结果],
+  [事实上$l_0$ penlity 方式以最少的约束条件得到了minimax rate最佳值 ],
+)
+
 复杂的理论看不懂...直接到建议部分：
 + 当选择模型是为了预测的时候：
   - 依据参数化指标或者交叉验证选择AIC-Type 或 BIC-Type 方法
